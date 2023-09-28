@@ -1,35 +1,45 @@
 # Számológép
+def adatkeres(tipus):
+    valasz = ""
+    if tipus == "sz":
+        valasz = input("Kérek egy számot: ")
+        while not valasz.isnumeric():
+            print("Rossz érték!!")
+            valasz = input("Kérek egy számot: ")
+        valasz = int(valasz)
+    elif tipus == "m":
+        valasz = input("Kérem a műveleti jelet! (+, -, /, %, *)")
+        while valasz not in ["+", "-", "/", "%", "*"]:
+            print("Nem érvényes a műveleti jel!!")
+            valasz = input("Kérem a műveleti jelet! (+, -, /, %, *)")
+    return valasz
+
+
+def szamolas():
+    eredmenye = 0
+    if muvelet == "+":
+        eredmenye = szam1 + szam2
+
+    elif muvelet == "-":
+        eredmenye = szam1 - szam2
+
+    elif muvelet == "/":
+        eredmenye = szam1 / szam2
+
+    elif muvelet == "%":
+        eredmenye = szam1 % szam2
+
+    elif muvelet == "*":
+        eredmenye = szam1 * szam2
+    return eredmenye
+
+
+# Prog eleje
 print("Számológép")
-
-szam1 = input("Kérek egy számot: ")
-while not szam1.isnumeric():
-    print("Rossz érték!!")
-    szam1 = input("Kérek egy számot: ")
-szam1 = int(szam1)
-
-muvelet = input("Kérem a műveleti jelet! (+, -, /, *)")
-while muvelet not in ["+", "-", "/", "*"]:
-    print("Nem érvényes a műveleti jel!!")
-    muvelet = input("Kérem a műveleti jelet! (+, -, /, *)")
-
-szam2 = input("Kérek egy másik számot: ")
-while not szam2.isnumeric():
-    print("Rossz érték!!")
-    szam2 = input("Kérek egy másik számot: ")
-szam2 = int(szam2)
-
-eredmeny = 0
-if muvelet == "+":
-    eredmeny = szam1 + szam2
-
-elif muvelet == "-":
-    eredmeny = szam1 - szam2
-
-elif muvelet == "/":
-    eredmeny = szam1 / szam2
-
-elif muvelet == "*":
-    eredmeny = szam1 * szam2
+szam1 = adatkeres("sz")
+muvelet = adatkeres("m")
+szam2 = adatkeres("sz")
+eredmeny = szamolas()
 
 print(str(szam1).rjust(50))
 print(muvelet, end="")
