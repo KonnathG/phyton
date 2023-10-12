@@ -21,44 +21,44 @@ def felhasznalonev():
 
 
 def jelszo_bekerese():
-    felhasznalo_jelszava = input("Kérek egy jelszót (1,a,A, min 8 karakter)")
-    rossz_jelszo = True
-    while rossz_jelszo:
-        rossz_jelszo=False
+    felhasznalo_jelszava = input("Kérek egy jelszót (1,a,A, min 8 karakter): ")
+    ok_pw = True
+    while ok_pw:
         if len(felhasznalo_jelszava) < 8:
-            rossz_jelszo = True
+            ok_pw = False
 
         van = 0
         for i in range(len(felhasznalo_jelszava)):
             if felhasznalo_jelszava[i].isnumeric():
                 van += 1
-            if van == 0:
-                rossz_jelszo = True
-        van = 0
+        if van == 0:
+            ok_pw = False
 
+        van = 0
         for i in range(len(felhasznalo_jelszava)):
             if felhasznalo_jelszava[i].isupper():
                 van += 1
-            if van == 0:
-                rossz_jelszo = True
+        if van == 0:
+            ok_pw = False
 
         van = 0
         for i in range(len(felhasznalo_jelszava)):
             if felhasznalo_jelszava[i].islower():
                 van += 1
-            if van == 0:
-                rossz_jelszo = True
+        if van == 0:
+            ok_pw = False
 
-        if rossz_jelszo == True:
-            felhasznalo_jelszava = input("Kérek egy jelszót (1,a,A, min 8 karakter)")
+        if not ok_pw:
+            felhasznalo_jelszava = input("Nem megfelelő a megadott jelszó!\nKérek egy jelszót (1,a,A, min 8 karakter): ")
+            ok_pw = True
         else:
-            rossz_jelszo = False
+            ok_pw = False
             print(f"Ez a jelszavad: {felhasznalo_jelszava}")
 
 
 def jelszo_ellenorzese():
-        ok_jelszo = True
-        return ok_jelszo
+        ok_pw = True
+        return ok_pw
 
 
 def beleptetes():
