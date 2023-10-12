@@ -1,16 +1,14 @@
 # Beléptető rendszer
 def regisztracio():
     sikeres = True
-    felhasznalonev()
-    jelszo_bekerese()
-    i = 0
-    while not jelszo_ellenorzese():
-        print("Nem egyezik a két jelszó")
-        i += 1
-        if i > 3:
-            sikeres = False
-            break
+    felhasznalo_email = felhasznalonev()
+    felhasznalo_jelszava = jelszo_bekerese()
+    if not jelszo_ellenorzese(felhasznalo_jelszava, 3):
+        sikeres = False
 
+    if sikeres:
+        with open("jelszo.txt", "w", encoding="utf-8") as fajl:
+            fajl.write(felhasznalo_email + ";" + felhasznalo_jelszava + "\n")
     return sikeres
 
 
@@ -18,6 +16,7 @@ def felhasznalonev():
     felhasznalo_email = input("Kérem adja meg az email címét: ")
     while " " in felhasznalo_email or "@" not in felhasznalo_email or "." not in felhasznalo_email:
         felhasznalo_email = input("Nem megfelelő az email!\nKérem adja meg az emailcímét: ")
+    return felhasznalo_email
 
 
 def jelszo_bekerese():
@@ -53,12 +52,20 @@ def jelszo_bekerese():
             ok_pw = True
         else:
             ok_pw = False
-            print(f"Ez a jelszavad: {felhasznalo_jelszava}")
+    return felhasznalo_jelszava
 
 
-def jelszo_ellenorzese():
+def jelszo_ellenorzese(felhasznalo_jelszo, proba):
+    i = 1
+    jelszo2 = input("Kérem ismét a jelszót: ")
+    while jelszo2 != felhasznalo_jelszo and i < proba:
+        jelszo2 = input("Kérem ismét a jelszót: ")
+        i += 1
+    if jelszo2 == felhasznalo_jelszo:
         ok_pw = True
-        return ok_pw
+    else:
+        ok_pw = False
+    return ok_pw
 
 
 def beleptetes():
@@ -66,13 +73,8 @@ def beleptetes():
 
 
 # Innen indul a program
-felhasznalo_email = ""
-felhasznalo_jelszava = ""
-"felhasznalonev()"
-jelszo_bekerese()
-
-"""if regisztracio():
+if regisztracio():
+    print("Sikerült a regisztráció, most beléptetjük")
     beleptetes()
 else:
-    print("Sikertelen regisztráció!")
-"""
+    print("Sikertelen regisztráció!\nPróbálja újra")
