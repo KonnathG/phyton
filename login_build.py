@@ -2,6 +2,7 @@
 def regisztracio():
     sikeres = True
     felhasznalo_email = felhasznalonev()
+    # automata jelszo generalas
     felhasznalo_jelszava = jelszo_bekerese()
     if not jelszo_ellenorzese(felhasznalo_jelszava, 3, "Kérem ismét a jelszót: "):
         sikeres = False
