@@ -1,3 +1,7 @@
+class Felhasznalo:
+    pass
+
+
 class Jelszo:
     jelszo = ""
 
@@ -25,6 +29,3 @@ class Jelszo:
             jelszo = jelszo + karakterek[random.randint(0, len(karakterek) - 1)]
         self.jelszo = jelszo
         return
-
-class Felhasznalo:
-    pass

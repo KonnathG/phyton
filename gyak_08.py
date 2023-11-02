@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+
 import gyak_09
 def beleptetes_ablak():
     def ok_gomb_feldolgozasa():
@@ -33,7 +35,10 @@ def beleptetes_ablak():
 
 def regisztracio_ablak():
     def ok_gomb_kezelese():
-        regisztracio.destroy()
+        if jsz.get() == jsz2.get():
+            regisztracio.destroy()
+        else:
+            messagebox.showerror("Hiba", "Nem egyezik a két jelszó")
     def jelszo_gen_gomb_kezelese():
         pw = gyak_09.Jelszo()
         pw.jelszo_generalasa(10, True, True, True)
@@ -56,9 +61,9 @@ def regisztracio_ablak():
     jsz2 = StringVar()
     jsz2.set("")
     reg_jelszo = Entry(regisztracio, textvariable=jsz, width=20)
-    reg_jelszo2 = Entry(regisztracio,textvariable=jsz2, width=20)
+    reg_jelszo2 = Entry(regisztracio, textvariable=jsz2, width=20)
 
-    gomb_ok = Button(regisztracio, text="OK", command=ok_gomb_kezelese)
+    gomb_ok = Button(regisztracio, text="OK", command=ok_gomb_kezelese, width=15,)
     jelszo_gen_gomb = Button(regisztracio, text="Jelszó generálása", command=jelszo_gen_gomb_kezelese)
 
     reg_felh_cimke.grid(row=0, column=0)
@@ -67,7 +72,7 @@ def regisztracio_ablak():
     reg_felh.grid(row=0, column=1)
     reg_jelszo.grid(row=1, column=1)
     reg_jelszo2.grid(row=2, column=1)
-    gomb_ok.grid(row=3, column=0)
+    gomb_ok.grid(row=3, column=0, columnspan=3, pady=10)
     jelszo_gen_gomb.grid(row=1, column=2)
 
     regisztracio.mainloop()
